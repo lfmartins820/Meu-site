@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USA Serviços</title>
+    <link href="https://fonts.googleapis.com" rel="stylesheet">
+    <style>
+        :root {
+            --usa-green: #27ae60;
+            --usa-yellow: #fcc602;
+            --usa-blue: #164e91;
+            --dark: #0f172a;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .page-wrapper {
+            display: flex;
+            min-height: 100vh;
+            width: 100%;
+            background: linear-gradient(155deg, var(--dark) 0%, var(--usa-blue) 10%, var(--usa-green) 60%, var(--usa-yellow) 120%);
+            background-attachment: fixed;
+        }
+
+        .form-side {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        .search-box {
+            width: 100%;
+            max-width: 520px;
+            background: white;
+            padding: 50px;
+            border-radius: 32px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            text-align: center;
+            position: relative; /* Necessário para posicionar o menu */
+        }
+
+        /* --- NOVO MENU SANDUÍCHE --- */
+        .menu-container {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        .menu-toggle {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 10;
+        }
+
+        .menu-toggle span {
+            width: 22px;
+            height: 2px;
+            background-color: #ffffff;
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 45px;
+            right: 0;
+            background: rgb(255, 255, 255);
+            min-width: 180px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            z-index: 9;
+            border: 1px solid #000000;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 12px 20px;
+            color: var(--dark);
+            text-decoration: none;
+            font-size: 0.9rem;
+            text-align: left;
+            transition: 0.2s;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #f8fafc;
+            color: var(--usa-blue);
+        }
+
+        .show { display: block !important; }
+
+        /* --- RESTANTE DO SEU CÓDIGO --- */
+        .brand-header {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+        .brand-usa { color:rgb(29, 8, 124) }
+        .brand-servicos { color: rgb(29, 8, 124) }
+
+        .search-box h2 {
+            color: #000000;
+            font-size: 1.1rem;
+            margin-bottom: 35px;
+            font-weight: 500;
+        }
+
+        .field-group {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .field-group label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #656e88;;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        select {
+            width: 100%;
+            height: 60px;
+            padding: 0 20px;
+            border: 2px solid #f1f5f9;
+            border-radius: 14px;
+            font-size: 1.05rem;
+            color: var(--dark);
+            background-color: #f8fafc;
+            outline: none;
+            transition: 0.3s;
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://w3.org' fill='none' viewBox='0 0 24 24' stroke='%2364748b'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 20px center;
+            background-size: 18px;
+        }
+
+        .btn-action {
+            width: 100%;
+            height: 65px;
+            background-color: var(--usa-blue);
+            color: white;
+            border: none;
+            border-radius: 14px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+        }
+
+        .trust-info {
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .info-card {
+            padding: 12px;
+            background: #eefef5;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--usa-blue);
+            border: 1px solid #edf2f7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-color: #929292;
+        }
+        .borda-botton{
+            border-color: #8e8b8b;
+
+        }
+    </style>
+</head>
+<body>
+     <!-- BOTÃO SANDUÍCHE ADICIONADO AQUI -->
+                <div class="menu-container">
+                    <button class="menu-toggle" onclick="toggleMenu()">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <div id="myDropdown" class="dropdown-menu">
+                        <a href="#">Quero me Cadastrar</a>
+                        <a href="#">Minha Conta</a>
+                        <a style="color: rgb(255, 0, 0);" href="#">Ajuda</a>
+                    </div>
+                </div>
+
+    <div class="page-wrapper">
+        <main class="form-side">
+            <div class="search-box">
+
+                <div class="brand-header">
+                    <span class="brand-usa">USA</span> <span class="brand-servicos">Serviços</span>
+                </div>
+                <h2>Encontre um especialista</h2>
+
+                <div class="field-group">
+                    <label>📍 Cidade</label>
+                    <select class="borda-botton">
+                        <option disabled selected>Selecione a cidade...</option>
+                        <option>Chapecó</option>
+                        <option>Joinville</option>
+                    </select>
+                </div>
+
+                <div class="field-group">
+                    <label>🛠️ Serviço</label>
+                    <select class="borda-botton">
+                        <option disabled selected>Escolha o serviço...</option>
+                        <option>Encanador</option>
+                        <option>Pintor</option>
+                        <option>Eletricista</option>
+                        <option>Montador de móveis</option>
+                        <option>Pedreiro</option>
+                        <option>Técnico em Ar-condicionado</option>
+                        <option>Lavagem de estofado</option>
+                        <option>Marido de Aluguel</option>
+                        <option>Faxineira</option>
+                        <option>Passadeira</option>
+                        <option>Mudanças e Carretos</option>
+                        <option>Jardinagem</option>
+                        <option>Conserto de Máquina de lavar</option>
+                        <option>Conserto de Computadores</option>
+                        <option>Adestrador de cães</option>
+                        <option>Aulas particulares(Reforço escolar)</option>
+                        <option>Manicure e Pedicure</option>
+                        <option>Consulta Jurídica</option>
+                        <option>Assistência Técnica em celular</option>
+                        <option>Manutenção de Geladeiras e Freezer</option>
+                    </select>
+                </div>
+
+                <button class="btn-action">Buscar Profissional</button>
+
+                <div class="trust-info">
+                    <div class="info-card">✓ Profissionais Verificados</div>
+                    <div class="info-card">⚡ Atendimento Imediato</div>
+                    <div class="info-card">🛡️ Segurança</div>
+                    <div class="info-card">⭐ Avaliados</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        // Fecha o menu se o usuário clicar fora dele
+        window.onclick = function(event) {
+            if (!event.target.closest('.menu-container')) {
+                var dropdowns = document.getElementsByClassName("dropdown-menu");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
