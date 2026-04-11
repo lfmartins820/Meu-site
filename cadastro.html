@@ -189,18 +189,48 @@
             justify-content: center;
         }
 
-        .menu-container { position: fixed; top: 15px; right: 15px; z-index: 1000; }
-        .menu-toggle { background: rgba(0,0,0,0.3); padding: 10px; border-radius: 10px; border: none; cursor: pointer; }
-        .menu-toggle span { width: 22px; height: 2px; background-color: #fff; margin: 4px 0; display: block; }
+        .menu-container { position: fixed; top: 55px; right: 15px; z-index: 999; }
+        
+        .menu-toggle { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 4px; 
+            background: rgba(0,0,0,0.3); /* Fundo preto transparente */
+            padding: 10px; 
+            border-radius: 10px; 
+            border: none; 
+            cursor: pointer; 
+        }
+
+        .menu-toggle span { 
+            width: 22px; 
+            height: 2px; 
+            background-color: #fff; 
+            border-radius: 2px; 
+        }
 
         .dropdown-menu { 
             display: none; 
-            position: absolute; top: 50px; right: 0; 
-            background: #fff; min-width: 180px; 
+            position: absolute; 
+            top: 50px; 
+            right: 0; 
+            background: #fff; 
+            min-width: 180px; 
             box-shadow: 0 10px 25px rgba(0,0,0,0.2); 
-            border-radius: 12px; overflow: hidden; 
+            border-radius: 12px; 
+            border: 1px solid #000; 
+            overflow: hidden; 
         }
-        .dropdown-menu a { display: block; padding: 12px 20px; color: var(--dark); text-decoration: none; font-size: 0.9rem; border-bottom: 1px solid #f1f5f9; }
+
+        .dropdown-menu a { 
+            display: block; 
+            padding: 12px 20px; 
+            color: var(--dark); 
+            text-decoration: none; 
+            font-size: 0.9rem; 
+            text-align: left; 
+        }
+
         .show { display: block !important; }
 
         .engrenagem-pequena { animation: girar 3s linear infinite; display: inline-block; }
