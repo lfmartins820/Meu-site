@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nós - USA Serviços</title>
+    <style>
+        :root {
+            --usa-green: #27ae60;
+            --usa-blue: #164e91;
+            --dark: #0f172a;
+        }
+
+        body, html {
+            margin: 0; padding: 0; min-height: 100%;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .page-wrapper {
+            display: flex;
+            min-height: 100vh;
+            width: 100%;
+            background: linear-gradient(155deg, var(--dark) 0%, var(--usa-blue) 10%, var(--usa-green) 60%);
+            background-attachment: fixed;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            box-sizing: border-box;
+        }
+
+        .content-card {
+            width: 100%;
+            max-width: 520px;
+            background: white;
+            padding: 40px;
+            border-radius: 32px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            text-align: left; 
+             position: relative; /* ADICIONE ESTA LINHA */
+            z-index: 10;
+        }
+
+        .brand-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            text-align: center;
+            color: var(--usa-blue);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        h2 { 
+            color: black; 
+            font-size: 1.2rem; 
+            margin: 25px 0 10px 0; 
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 5px;
+        }
+
+        p { 
+            color: #000000; 
+            font-size: 0.95rem; 
+            line-height: 1.6; 
+            margin-bottom: 15px;
+        }
+
+        ul { padding-left: 20px; color: #475569; font-size: 0.95rem; }
+        li { margin-bottom: 8px; }
+        strong { color: black; }
+
+        .btn-voltar {
+            display: block;
+            width: 100%;
+            padding: 18px;
+            background-color: var(--usa-blue);
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 14px;
+            font-weight: 700;
+            margin-top: 30px;
+            transition: 0.3s;
+        }
+
+        .trust-tags {
+            margin-top: 30px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .tag {
+            padding: 12px;
+            background: #eefef5;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--usa-blue);
+            text-align: center;
+            border: 1px solid #edf2f7;
+        }
+    </style>
+</head>
+<body>
+ <!-- Fundo com 20 Ferramentas Mais Visíveis -->
+<div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; user-select: none;">
+    <span style="position: absolute; top: 5%; left: 10%; font-size: 50px; opacity: 0.25; transform: rotate(-15deg); filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">🛠️</span>
+    <span style="position: absolute; top: 15%; right: 15%; font-size: 45px; opacity: 0.25; transform: rotate(20deg); filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">🔧</span>
+    <span style="position: absolute; top: 35%; left: 5%; font-size: 55px; opacity: 0.25; transform: rotate(-25deg); filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">🔨</span>
+    <span style="position: absolute; top: 45%; right: 10%; font-size: 40px; opacity: 0.25; transform: rotate(30deg); filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">🪚</span>
+    <span style="position: absolute; top: 75%; left: 12%; font-size: 50px; opacity: 0.25; transform: rotate(-10deg); filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">🪜</span>
+    <span style="position: absolute; top: 85%; right: 15%; font-size: 45px; opacity: 0.25; transform: rotate(45deg); filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">🪛</span>
+    <span style="position: absolute; top: 10%; left: 40%; font-size: 35px; opacity: 0.25; transform: rotate(15deg); filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">💡</span>
+    <span style="position: absolute; top: 25%; right: 40%; font-size: 50px; opacity: 0.25; transform: rotate(-20deg); filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">🔦</span>
+    <span style="position: absolute; top: 60%; left: 45%; font-size: 40px; opacity: 0.25; transform: rotate(10deg); filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">🧱</span>
+    <span style="position: absolute; top: 80%; right: 45%; font-size: 55px; opacity: 0.25; transform: rotate(-35deg); filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">⚙️</span>
+    <span style="position: absolute; top: 50%; left: 15%; font-size: 30px; opacity: 0.25; transform: rotate(12deg); filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">📐</span>
+    <span style="position: absolute; top: 5%; right: 5%; font-size: 40px; opacity: 0.25; transform: rotate(-40deg); filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">📏</span>
+    <span style="position: absolute; top: 30%; left: 25%; font-size: 35px; opacity: 0.25; transform: rotate(25deg); filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">🏗️</span>
+    <span style="position: absolute; top: 65%; right: 25%; font-size: 45px; opacity: 0.25; transform: rotate(-12deg); filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">🪵</span>
+    <span style="position: absolute; top: 90%; left: 35%; font-size: 30px; opacity: 0.25; transform: rotate(5deg); filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">🔌</span>
+    <span style="position: absolute; top: 92%; right: 5%; font-size: 35px; opacity: 0.25; transform: rotate(-30deg); filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">📎</span>
+    <span style="position: absolute; top: 40%; left: 85%; font-size: 50px; opacity: 0.25; transform: rotate(20deg); filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">🔨</span>
+    <span style="position: absolute; top: 55%; left: 2%; font-size: 40px; opacity: 0.25; transform: rotate(-15deg); filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">🛠️</span>
+    <span style="position: absolute; top: 70%; right: 5%; font-size: 35px; opacity: 0.25; transform: rotate(10deg); filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">🔧</span>
+    <span style="position: absolute; top: 50%; left: 50%; font-size: 200px; opacity: 0.05; transform: translate(-50%, -50%);">🛠️</span>
+</div>
+
+    <div class="page-wrapper">
+        <div class="content-card">
+            <div class="brand-title">USA Serviços</div>
+            
+            <h2>Sobre a USA Serviços</h2>
+            <p>A USA Serviços nasceu com o propósito de simplificar a conexão entre quem precisa de ajuda e quem sabe resolver. Somos uma plataforma inteligente que une clientes a profissionais especializados de forma direta, transparente e segura.</p>
+
+            <h2>Como funcionamos?</h2>
+            <p>Diferente de modelos tradicionais, nós priorizamos a liberdade de escolha. Ao selecionar sua cidade e o serviço desejado, você tem acesso imediato a uma vitrine de talentos locais.</p>
+            
+            <ul>
+                <li><strong>Portfólio Real:</strong> Fotos de serviços já realizados.</li>
+                <li><strong>Avaliações Verificadas:</strong> A opinião real de outros clientes.</li>
+                <li><strong>Selo de Verificação:</strong> Profissionais analisados um a um.</li>
+                <li><strong>Contato Direto:</strong> Link para WhatsApp sem intermediários.</li>
+            </ul>
+
+            <h2>Segurança e Liberdade</h2>
+            <p>Cada prestador passa por uma verificação individual. O cliente tem total autonomia para conversar com quantos profissionais desejar e comparar orçamentos, sem taxas de intermediação.</p>
+
+            <h2>Visibilidade e Crescimento</h2>
+            <p>Para o profissional, parte do valor da assinatura mensal é convertido em <strong>tráfego pago</strong>, garantindo que seu perfil apareça para quem realmente quer contratar.</p>
+
+            <a href="testeusa2.html" class="btn-voltar">VOLTAR AO INÍCIO</a>
+        </div>
+    </div>
+
+</body>
+</html>
