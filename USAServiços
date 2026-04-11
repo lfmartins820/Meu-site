@@ -48,11 +48,11 @@
         }
 
         /* --- NOVO MENU SANDUÍCHE --- */
-        .menu-container {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-        }
+           .menu-container {
+            position: fixed; 
+            top: 15px;     
+            right: 15px;   
+            z-index: 99999;}
 
         .menu-toggle {
             display: flex;
@@ -61,7 +61,7 @@
             background: none;
             border: none;
             cursor: pointer;
-            padding: 10px;
+            padding: 20px;
             z-index: 10;
         }
 
@@ -104,7 +104,6 @@
 
         .show { display: block !important; }
 
-        /* --- RESTANTE DO SEU CÓDIGO --- */
         .brand-header {
             font-size: 2.2rem;
             font-weight: 800;
@@ -194,9 +193,67 @@
             border-color: #8e8b8b;
 
         }
+        /* --- FAIXA DE MANUTENÇÃO DISCRETA NO TOPO --- */
+        .aviso-manutencao {
+            background: linear-gradient(135deg, #164e91 0%, #27ae60 100%);
+            color: #fcff65;
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            position: sticky; /* Ela rola junto com o site ou fica fixa no topo */
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .engrenagem-pequena {
+            animation: girar 3s linear infinite;
+            display: inline-block;
+        }
+
+        @keyframes girar {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
+    <!-- Fundo com 20 Ferramentas Mais Visíveis -->
+<div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; user-select: none;">
+    <span style="position: absolute; top: 5%; left: 10%; font-size: 50px; opacity: 0.25; transform: rotate(-15deg); filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">🛠️</span>
+    <span style="position: absolute; top: 15%; right: 15%; font-size: 45px; opacity: 0.25; transform: rotate(20deg); filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">🔧</span>
+    <span style="position: absolute; top: 35%; left: 5%; font-size: 55px; opacity: 0.25; transform: rotate(-25deg); filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">🔨</span>
+    <span style="position: absolute; top: 45%; right: 10%; font-size: 40px; opacity: 0.25; transform: rotate(30deg); filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">🪚</span>
+    <span style="position: absolute; top: 75%; left: 12%; font-size: 50px; opacity: 0.25; transform: rotate(-10deg); filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">🪜</span>
+    <span style="position: absolute; top: 85%; right: 15%; font-size: 45px; opacity: 0.25; transform: rotate(45deg); filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">🪛</span>
+    <span style="position: absolute; top: 10%; left: 40%; font-size: 35px; opacity: 0.25; transform: rotate(15deg); filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">💡</span>
+    <span style="position: absolute; top: 25%; right: 40%; font-size: 50px; opacity: 0.25; transform: rotate(-20deg); filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">🔦</span>
+    <span style="position: absolute; top: 60%; left: 45%; font-size: 40px; opacity: 0.25; transform: rotate(10deg); filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">🧱</span>
+    <span style="position: absolute; top: 80%; right: 45%; font-size: 55px; opacity: 0.25; transform: rotate(-35deg); filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">⚙️</span>
+    <span style="position: absolute; top: 50%; left: 15%; font-size: 30px; opacity: 0.25; transform: rotate(12deg); filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">📐</span>
+    <span style="position: absolute; top: 5%; right: 5%; font-size: 40px; opacity: 0.25; transform: rotate(-40deg); filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">📏</span>
+    <span style="position: absolute; top: 30%; left: 25%; font-size: 35px; opacity: 0.25; transform: rotate(25deg); filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">🏗️</span>
+    <span style="position: absolute; top: 65%; right: 25%; font-size: 45px; opacity: 0.25; transform: rotate(-12deg); filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">🪵</span>
+    <span style="position: absolute; top: 90%; left: 35%; font-size: 30px; opacity: 0.25; transform: rotate(5deg); filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">🔌</span>
+    <span style="position: absolute; top: 92%; right: 5%; font-size: 35px; opacity: 0.25; transform: rotate(-30deg); filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">📎</span>
+    <span style="position: absolute; top: 40%; left: 85%; font-size: 50px; opacity: 0.25; transform: rotate(20deg); filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">🔨</span>
+    <span style="position: absolute; top: 55%; left: 2%; font-size: 40px; opacity: 0.25; transform: rotate(-15deg); filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">🛠️</span>
+    <span style="position: absolute; top: 70%; right: 5%; font-size: 35px; opacity: 0.25; transform: rotate(10deg); filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">🔧</span>
+    <span style="position: absolute; top: 50%; left: 50%; font-size: 200px; opacity: 0.05; transform: translate(-50%, -50%);">🛠️</span>
+</div>
+
+</div>
+
+      <div class="aviso-manutencao">
+        <span class="engrenagem-pequena">⚙️</span> 
+        SITE EM MANUTENÇÃO: Estamos preparando novidades para você!
+    </div>
+    </div>
      <!-- BOTÃO SANDUÍCHE ADICIONADO AQUI -->
                 <div class="menu-container">
                     <button class="menu-toggle" onclick="toggleMenu()">
@@ -207,6 +264,7 @@
                     <div id="myDropdown" class="dropdown-menu">
                         <a href="#">Quero me Cadastrar</a>
                         <a href="#">Minha Conta</a>
+                        <a href="sobreusa.html">Sobre Nós</a>
                         <a style="color: rgb(255, 0, 0);" href="#">Ajuda</a>
                     </div>
                 </div>
