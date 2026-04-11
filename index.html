@@ -2,10 +2,11 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>USA Serviços</title>
-    <link href="https://fonts.googleapis.com" rel="stylesheet">
-   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='80'>🛠️</text></svg>">
+    <link href="https://googleapis.com" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://w3.org' viewBox='0 0 100 100'><text y='.9em' font-size='80'>🛠️</text></svg>">
+
     <style>
         :root {
             --usa-green: #27ae60;
@@ -18,15 +19,52 @@
             margin: 0;
             padding: 0;
             height: 100%;
+            width: 100%;
+            overflow: hidden; /* Trava o scroll */
             font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--dark);
         }
 
         .page-wrapper {
             display: flex;
-            min-height: 100vh;
+            flex-direction: column;
+            height: 100%;
             width: 100%;
             background: linear-gradient(155deg, var(--dark) 0%, var(--usa-blue) 10%, var(--usa-green) 60%, var(--usa-yellow) 120%);
-            background-attachment: fixed;
+            min-height: -webkit-fill-available;
+            position: relative;
+            background-attachment: fixed; /* Fixa o gradiente no fundo */
+            background-size: 100% 100vh;  /* Força a cobertura total */
+
+        }
+
+        /* Camada de Emojis */
+        .emoji-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .emoji-bg span {
+            position: absolute;
+            opacity: 0.4; /* Aumentado para visibilidade */
+            filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));
+        }
+
+        .aviso-manutencao {
+            background: linear-gradient(135deg, #164e91 0%, #27ae60 100%);
+            color: #fcff65;
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+            font-size: 0.85rem;
+            z-index: 10;
+            position: relative;
         }
 
         .form-side {
@@ -34,96 +72,40 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 40px;
+            padding: 20px;
+            z-index: 5;
+            position: relative;
         }
 
         .search-box {
             width: 100%;
-            max-width: 520px;
+            max-width: 480px;
             background: white;
-            padding: 50px;
+            padding: 35px 25px;
             border-radius: 32px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
             text-align: center;
-            position: relative; /* Necessário para posicionar o menu */
+            box-sizing: border-box;
         }
-
-        /* --- NOVO MENU SANDUÍCHE --- */
-           .menu-container {
-            position: fixed; 
-            top: 15px;     
-            right: 15px;   
-            z-index: 99999;}
-
-        .menu-toggle {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 20px;
-            z-index: 10;
-        }
-
-        .menu-toggle span {
-            width: 22px;
-            height: 2px;
-            background-color: #ffffff;
-            border-radius: 2px;
-            transition: 0.3s;
-        }
-
-        .dropdown-menu {
-            display: none;
-            position: absolute;
-            top: 45px;
-            right: 0;
-            background: rgb(255, 255, 255);
-            min-width: 180px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            border-radius: 12px;
-            overflow: hidden;
-            z-index: 9;
-            border: 1px solid #000000;
-        }
-
-        .dropdown-menu a {
-            display: block;
-            padding: 12px 20px;
-            color: var(--dark);
-            text-decoration: none;
-            font-size: 0.9rem;
-            text-align: left;
-            transition: 0.2s;
-        }
-
-        .dropdown-menu a:hover {
-            background-color: #f8fafc;
-            color: var(--usa-blue);
-        }
-
-        .show { display: block !important; }
 
         .brand-header {
             font-size: 2.2rem;
             font-weight: 800;
             margin-bottom: 5px;
             text-transform: uppercase;
+            color: var(--usa-blue);
             letter-spacing: -1px;
         }
-        .brand-usa { color:rgb(29, 8, 124) }
-        .brand-servicos { color: rgb(29, 8, 124) }
 
         .search-box h2 {
-            color: #000000;
+            color: #000;
             font-size: 1.1rem;
-            margin-bottom: 35px;
+            margin-bottom: 25px;
             font-weight: 500;
         }
 
         .field-group {
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             text-align: left;
         }
 
@@ -131,34 +113,26 @@
             display: block;
             font-size: 0.8rem;
             font-weight: 700;
-            color: #656e88;;
-            margin-bottom: 10px;
+            color: #656e88;
+            margin-bottom: 8px;
             text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
         select {
             width: 100%;
-            height: 60px;
-            padding: 0 20px;
+            height: 55px;
+            padding: 0 15px;
             border: 2px solid #f1f5f9;
             border-radius: 14px;
-            font-size: 1.05rem;
-            color: var(--dark);
+            font-size: 1rem;
             background-color: #f8fafc;
             outline: none;
-            transition: 0.3s;
-            cursor: pointer;
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://w3.org' fill='none' viewBox='0 0 24 24' stroke='%2364748b'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 20px center;
-            background-size: 18px;
+            color: var(--dark);
         }
 
         .btn-action {
             width: 100%;
-            height: 65px;
+            height: 60px;
             background-color: var(--usa-blue);
             color: white;
             border: none;
@@ -166,141 +140,97 @@
             font-size: 1.1rem;
             font-weight: 700;
             cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 15px;
+            margin-top: 10px;
         }
 
         .trust-info {
-            margin-top: 40px;
+            margin-top: 30px;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
+            gap: 10px;
         }
 
         .info-card {
-            padding: 12px;
+            padding: 10px;
             background: #eefef5;
             border-radius: 40px;
             font-size: 0.75rem;
             font-weight: 600;
             color: var(--usa-blue);
-            border: 1px solid #edf2f7;
+            border: 1px solid #929292;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-color: #929292;
-        }
-        .borda-botton{
-            border-color: #8e8b8b;
-
-        }
-        /* --- FAIXA DE MANUTENÇÃO DISCRETA NO TOPO --- */
-        .aviso-manutencao {
-            background: linear-gradient(135deg, #164e91 0%, #27ae60 100%);
-            color: #fcff65;
-            text-align: center;
-            padding: 10px;
-            font-weight: bold;
-            font-size: 0.9rem;
-            position: sticky; /* Ela rola junto com o site ou fica fixa no topo */
-            top: 0;
-            z-index: 1000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
         }
 
-        .engrenagem-pequena {
-            animation: girar 3s linear infinite;
-            display: inline-block;
+        /* Menu */
+        .menu-container { position: fixed; top: 55px; right: 15px; z-index: 999; }
+        .menu-toggle { display: flex; flex-direction: column; gap: 4px; background: none; border: none; cursor: pointer; }
+        .menu-toggle span { width: 22px; height: 2px; background-color: #fff; border-radius: 2px; }
+        .dropdown-menu { display: none; position: absolute; top: 40px; right: 0; background: #fff; min-width: 180px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); border-radius: 12px; border: 1px solid #000; overflow: hidden; }
+        .dropdown-menu a { display: block; padding: 12px 20px; color: var(--dark); text-decoration: none; font-size: 0.9rem; text-align: left; }
+        .show { display: block !important; }
+
+        @media (max-height: 700px) {
+            .search-box { padding: 20px 15px; }
+            .brand-header { font-size: 1.7rem; }
+            .search-box h2 { margin-bottom: 15px; }
+            .field-group { margin-bottom: 12px; }
+            select, .btn-action { height: 48px; }
+            .trust-info { margin-top: 15px; }
         }
 
-        @keyframes girar {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        <script>
-    function toggleMenu() {
-        document.getElementById("myDropdown").classList.toggle("show");
-    }
-
-    // Fecha o menu se o usuário clicar fora dele
-    window.onclick = function(event) {
-        if (!event.target.matches('.menu-toggle') && !event.target.closest('.menu-toggle')) {
-            var dropdowns = document.getElementsByClassName("dropdown-menu");
-            for (var i = 0; i < dropdowns.length; i++) {
-                var openDropdown = dropdowns[i];
-                if (openDropdown.classList.contains('show')) {
-                    openDropdown.classList.remove('show');
-                }
-            }
-        }
-    }
-</script>
-
+        .engrenagem-pequena { animation: girar 3s linear infinite; display: inline-block; }
+        @keyframes girar { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
     </style>
 </head>
 <body>
-    <!-- Fundo com 20 Ferramentas Mais Visíveis -->
-<div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; user-select: none;">
-    <span style="position: absolute; top: 5%; left: 10%; font-size: 50px; opacity: 0.25; transform: rotate(-15deg); filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">🛠️</span>
-    <span style="position: absolute; top: 15%; right: 15%; font-size: 45px; opacity: 0.25; transform: rotate(20deg); filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">🔧</span>
-    <span style="position: absolute; top: 35%; left: 5%; font-size: 55px; opacity: 0.25; transform: rotate(-25deg); filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">🔨</span>
-    <span style="position: absolute; top: 45%; right: 10%; font-size: 40px; opacity: 0.25; transform: rotate(30deg); filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">🪚</span>
-    <span style="position: absolute; top: 75%; left: 12%; font-size: 50px; opacity: 0.25; transform: rotate(-10deg); filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">🪜</span>
-    <span style="position: absolute; top: 85%; right: 15%; font-size: 45px; opacity: 0.25; transform: rotate(45deg); filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">🪛</span>
-    <span style="position: absolute; top: 10%; left: 40%; font-size: 35px; opacity: 0.25; transform: rotate(15deg); filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">💡</span>
-    <span style="position: absolute; top: 25%; right: 40%; font-size: 50px; opacity: 0.25; transform: rotate(-20deg); filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">🔦</span>
-    <span style="position: absolute; top: 60%; left: 45%; font-size: 40px; opacity: 0.25; transform: rotate(10deg); filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">🧱</span>
-    <span style="position: absolute; top: 80%; right: 45%; font-size: 55px; opacity: 0.25; transform: rotate(-35deg); filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">⚙️</span>
-    <span style="position: absolute; top: 50%; left: 15%; font-size: 30px; opacity: 0.25; transform: rotate(12deg); filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">📐</span>
-    <span style="position: absolute; top: 5%; right: 5%; font-size: 40px; opacity: 0.25; transform: rotate(-40deg); filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">📏</span>
-    <span style="position: absolute; top: 30%; left: 25%; font-size: 35px; opacity: 0.25; transform: rotate(25deg); filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">🏗️</span>
-    <span style="position: absolute; top: 65%; right: 25%; font-size: 45px; opacity: 0.25; transform: rotate(-12deg); filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">🪵</span>
-    <span style="position: absolute; top: 90%; left: 35%; font-size: 30px; opacity: 0.25; transform: rotate(5deg); filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">🔌</span>
-    <span style="position: absolute; top: 92%; right: 5%; font-size: 35px; opacity: 0.25; transform: rotate(-30deg); filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">📎</span>
-    <span style="position: absolute; top: 40%; left: 85%; font-size: 50px; opacity: 0.25; transform: rotate(20deg); filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">🔨</span>
-    <span style="position: absolute; top: 55%; left: 2%; font-size: 40px; opacity: 0.25; transform: rotate(-15deg); filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">🛠️</span>
-    <span style="position: absolute; top: 70%; right: 5%; font-size: 35px; opacity: 0.25; transform: rotate(10deg); filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">🔧</span>
-    <span style="position: absolute; top: 50%; left: 50%; font-size: 200px; opacity: 0.05; transform: translate(-50%, -50%);">🛠️</span>
-</div>
-
-</div>
-
-      <div class="aviso-manutencao">
-        <span class="engrenagem-pequena">⚙️</span> 
-        SITE EM MANUTENÇÃO: Estamos preparando novidades para você!
-    </div>
-    </div>
-     <!-- BOTÃO SANDUÍCHE ADICIONADO AQUI -->
-                <div class="menu-container">
-                    <button class="menu-toggle" onclick="toggleMenu()">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
-                    <div id="myDropdown" class="dropdown-menu">
-                        <a href="#">Quero me Cadastrar</a>
-                        <a href="#">Minha Conta</a>
-                        <a href="sobreusa.html">Sobre Nós</a>
-                        <a style="color: rgb(255, 0, 0);" href="#">Ajuda</a>
-                    </div>
-                </div>
 
     <div class="page-wrapper">
+        <!-- Emojis Restaurados -->
+        <div class="emoji-bg">
+            <span style="top: 5%; left: 10%; font-size: 50px; transform: rotate(-15deg);">🛠️</span>
+            <span style="top: 15%; right: 15%; font-size: 45px; transform: rotate(20deg);">🔧</span>
+            <span style="top: 35%; left: 5%; font-size: 55px; transform: rotate(-25deg);">🔨</span>
+            <span style="top: 45%; right: 10%; font-size: 40px; transform: rotate(30deg);">🪚</span>
+            <span style="top: 75%; left: 12%; font-size: 50px; transform: rotate(-10deg);">🪜</span>
+            <span style="top: 85%; right: 15%; font-size: 45px; transform: rotate(45deg);">🪛</span>
+            <span style="top: 10%; left: 40%; font-size: 35px; transform: rotate(15deg);">💡</span>
+            <span style="top: 25%; right: 40%; font-size: 50px; transform: rotate(-20deg);">🔦</span>
+            <span style="top: 60%; left: 45%; font-size: 40px; transform: rotate(10deg);">🧱</span>
+            <span style="top: 80%; right: 45%; font-size: 55px; transform: rotate(-35deg);">⚙️</span>
+            <span style="top: 50%; left: 15%; font-size: 30px; transform: rotate(12deg);">📐</span>
+            <span style="top: 5%; right: 5%; font-size: 40px; transform: rotate(-40deg);">📏</span>
+            <span style="top: 30%; left: 25%; font-size: 35px; transform: rotate(25deg);">🏗️</span>
+            <span style="top: 65%; right: 25%; font-size: 45px; transform: rotate(-12deg);">🪵</span>
+            <span style="top: 90%; left: 35%; font-size: 30px; transform: rotate(5deg);">🔌</span>
+            <span style="top: 92%; right: 5%; font-size: 35px; transform: rotate(-30deg);">📎</span>
+        </div>
+
+        <div class="aviso-manutencao">
+            <span class="engrenagem-pequena">⚙️</span> SITE EM MANUTENÇÃO: Novidades em breve!
+        </div>
+
+        <div class="menu-container">
+            <button class="menu-toggle" onclick="toggleMenu()">
+                <span></span><span></span><span></span>
+            </button>
+            <div id="myDropdown" class="dropdown-menu">
+                <a href="#">Quero me Cadastrar</a>
+                <a href="#">Minha Conta</a>
+                <a href="sobreusa.html">Sobre Nós</a>
+                <a style="color: red;" href="#">Ajuda</a>
+            </div>
+        </div>
+
         <main class="form-side">
             <div class="search-box">
-
-                <div class="brand-header">
-                    <span class="brand-usa">USA</span> <span class="brand-servicos">Serviços</span>
-                </div>
+                <h1 class="brand-header">USA Serviços</h1>
                 <h2>Encontre um especialista</h2>
 
                 <div class="field-group">
                     <label>📍 Cidade</label>
-                    <select class="borda-botton">
+                    <select>
                         <option disabled selected>Selecione a cidade...</option>
                         <option>Chapecó</option>
                         <option>Joinville</option>
@@ -309,7 +239,7 @@
 
                 <div class="field-group">
                     <label>🛠️ Serviço</label>
-                    <select class="borda-botton">
+                    <select>
                         <option disabled selected>Escolha o serviço...</option>
                         <option>Encanador</option>
                         <option>Pintor</option>
@@ -332,13 +262,14 @@
                         <option>Assistência Técnica em celular</option>
                         <option>Manutenção de Geladeiras e Freezer</option>
                     </select>
+                    </select>
                 </div>
 
                 <button class="btn-action">Buscar Profissional</button>
 
                 <div class="trust-info">
-                    <div class="info-card">✓ Profissionais Verificados</div>
-                    <div class="info-card">⚡ Atendimento Imediato</div>
+                    <div class="info-card">✓ Verificados</div>
+                    <div class="info-card">⚡ Imediato</div>
                     <div class="info-card">🛡️ Segurança</div>
                     <div class="info-card">⭐ Avaliados</div>
                 </div>
@@ -347,20 +278,11 @@
     </div>
 
     <script>
-        function toggleMenu() {
-            document.getElementById("myDropdown").classList.toggle("show");
-        }
-
-        // Fecha o menu se o usuário clicar fora dele
-        window.onclick = function(event) {
-            if (!event.target.closest('.menu-container')) {
-                var dropdowns = document.getElementsByClassName("dropdown-menu");
-                for (var i = 0; i < dropdowns.length; i++) {
-                    var openDropdown = dropdowns[i];
-                    if (openDropdown.classList.contains('show')) {
-                        openDropdown.classList.remove('show');
-                    }
-                }
+        function toggleMenu() { document.getElementById("myDropdown").classList.toggle("show"); }
+        window.onclick = function(e) {
+            if (!e.target.closest('.menu-container')) {
+                var d = document.getElementById("myDropdown");
+                if (d && d.classList.contains('show')) d.classList.remove('show');
             }
         }
     </script>
