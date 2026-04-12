@@ -109,7 +109,6 @@
             text-transform: uppercase;
         }
 
-        /* Estiliza inputs de texto e selects, ignora o de arquivo */
         input:not([type="file"]),
         select {
             width: 100%;
@@ -195,7 +194,7 @@
             display: flex; 
             flex-direction: column; 
             gap: 4px; 
-            background: rgba(0,0,0,0.3); /* Fundo preto transparente */
+            background: rgba(0,0,0,0.3);
             padding: 10px; 
             border-radius: 10px; 
             border: none; 
@@ -241,7 +240,6 @@
 <body>
 
     <div class="page-wrapper">
-        <!-- Emojis Restaurados -->
         <div class="emoji-bg">
             <span style="top: 5%; left: 10%; font-size: 50px; transform: rotate(-15deg);">🛠️</span>
             <span style="top: 15%; right: 15%; font-size: 45px; transform: rotate(20deg);">🔧</span>
@@ -283,7 +281,6 @@
         </div>
 
        <main class="form-side">
-    <!-- Coloquei a tag <form> para o 'required' funcionar -->
     <form class="search-box" id="cadastroForm">
         <h1 class="brand-header">USA Serviços</h1>
         <h2>Quero me cadastrar</h2>
@@ -356,7 +353,6 @@
     </div>
 
    <script>
-    // Função do Menu que você já tinha
     function toggleMenu() { 
         document.getElementById("myDropdown").classList.toggle("show"); 
     }
@@ -368,16 +364,12 @@
         }
     }
 
-    // --- NOVO: Função para o Enter pular campos e validar ---
     const form = document.getElementById('cadastroForm');
     
     form.addEventListener('keydown', function(e) {
         if (e.key === 'Enter') {
-            // Se não for o botão de enviar, pula para o próximo campo
             if (e.target.tagName !== 'BUTTON') {
-                e.preventDefault(); // Impede o envio prematuro
-                
-                // Pega todos os campos que podem receber foco
+                e.preventDefault(); 
                 const focusable = form.querySelectorAll('input, select, button');
                 const index = Array.from(focusable).indexOf(e.target);
                 
@@ -387,8 +379,6 @@
             }
         }
     });
-
-    // Mensagem ao finalizar (apenas quando tudo estiver preenchido)
     form.onsubmit = function(e) {
         e.preventDefault();
         alert("Em breve será possível fazer o cadastro, volte em outro momento");
